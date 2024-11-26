@@ -1,6 +1,7 @@
 # Reproduce the problem
 
-1. Run ./setup.sh
+1. Run `devbox shell`
+1. Run `./setup.sh`
 1. Run `kubectl describe composite`
 1. Observe the error message:
 ```
