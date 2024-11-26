@@ -1,0 +1,43 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xsqls.devopstoolkit.live
+spec:
+  claimNames:
+    kind: SQL
+    plural: sqls
+  group: devopstoolkit.live
+  names:
+    categories:
+    - crossplane
+    kind: XSQL
+    plural: xsqls
+  versions:
+  - name: v1alpha1
+    referenceable: true
+    schema:
+      openAPIV3Schema:
+        description: SQL is the Schema for the SQL API.
+        properties:
+          spec:
+            description: SQLSpec defines the desired state of SQL.
+            properties:
+              id:
+                type: string
+              parameters:
+                properties:
+                  region:
+                    type: string
+                  size:
+                    type: string
+                  version:
+                    type: string
+                type: object
+            type: object
+          status:
+            description: SQLStatus defines the observed state of SQL.
+            type: object
+        required:
+        - spec
+        type: object
+    served: true

@@ -1,0 +1,23 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: xsqls.devopstoolkit.live
+spec:
+  compositeTypeRef:
+    apiVersion: devopstoolkit.live/v1alpha1
+    kind: XSQL
+  mode: Pipeline
+  pipeline:
+  - functionRef:
+      name: irizzant-silly-demoaws
+    step: aws
+  - functionRef:
+      name: crossplane-contrib-function-status-transformer
+    input:
+      apiVersion: function-status-transformer.fn.crossplane.io/v1beta1
+      kind: StatusTransformation
+      metadata: {}
+    step: crossplane-contrib-function-status-transformer
+  - functionRef:
+      name: crossplane-contrib-function-auto-ready
+    step: crossplane-contrib-function-auto-ready
